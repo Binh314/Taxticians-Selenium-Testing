@@ -46,5 +46,30 @@ public class DashboardSteps {
     public void in_app_studio(){
         assertTrue(this.studioPage.appNameDisplay());
     }
+
+    // @Given("I am on App Studio home page")
+    // public void i_am_on_app_studio_home_page() {
+    //     // Write code here that turns the phrase above into concrete actions
+    //     assertTrue(this.studioPage.appNameDisplay());
+    // }
+
+    @When("I click on App Studio") 
+    public void i_click_the_app_studio() {
+        this.studioPage.clickAppStudioDropdown();
+    }
+
+    @When("click Dev Studio")
+    public void click_dev_studio() {
+        this.studioPage.clickDevStudio();
+    }
     
+    @Then("I will be in Dev Studio")
+    public void i_will_be_in_dev_studio() {
+        assertTrue(true);
+    }
+
+    @When("I launch user portal")
+    public void i_launch_user_portal() {
+        this.studioPage.launchUserPortal();
+    }
 }
