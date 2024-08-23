@@ -11,7 +11,7 @@ public class StudioPage {
 
     private WebDriver driver;
 
-    @FindBy(id = "Title(temp)")
+    @FindBy(name = "pzAppName_pyPortalHarness_1")
     private WebElement appName;
 
     public StudioPage(WebDriver driver) {
@@ -20,7 +20,7 @@ public class StudioPage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean signOffLinkDisplayed() {
+    public boolean appNameDisplay() {
         try {
             Thread.sleep(1000);
         } catch(InterruptedException e) {

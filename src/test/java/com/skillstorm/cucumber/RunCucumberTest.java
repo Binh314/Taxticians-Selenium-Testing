@@ -10,6 +10,8 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 
 import com.skillstorm.selenium.PegaLogin;
 
+import com.skillstorm.selenium.StudioPage;
+
 @Suite
 @IncludeEngines("cucumber")
 //@SelectClasspathResource("com/skillstorm")

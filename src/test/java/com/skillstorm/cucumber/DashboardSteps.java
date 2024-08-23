@@ -11,15 +11,19 @@ import com.skillstorm.selenium.PegaLogin;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 
+import com.skillstorm.selenium.StudioPage;
+
 public class DashboardSteps {
 
     private WebDriver driver;
     private PegaLogin pegaLogin;
+    private StudioPage studioPage;
 
     @Before("@Onboarding")
     public void before(){
         this.driver = new ChromeDriver();
         this.pegaLogin = new PegaLogin(driver);
+        this.studioPage = new StudioPage(driver);
     }
 
     @Given("I am on the Pega login page")
@@ -29,8 +33,8 @@ public class DashboardSteps {
 
     @When("I enter valid {string} and {string}")
     public void i_enter_valid_credentials(String username, String password){
-        this.pegaLogin.setUsername("username");
-        this.pegaLogin.setPassword("password");
+        this.pegaLogin.setUsername("user");
+        this.pegaLogin.setPassword("pass");
     }
 
     @And("click the login button")
@@ -40,7 +44,7 @@ public class DashboardSteps {
 
     @Then("I will be in app studio")
     public void in_app_studio(){
-        
+        assertTrue(this.studioPage.appNameDisplay());
     }
     
 }
