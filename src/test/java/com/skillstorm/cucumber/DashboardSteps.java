@@ -16,7 +16,7 @@ public class DashboardSteps {
     private WebDriver driver;
     private PegaLogin pegaLogin;
 
-    @Before("@onboarding")
+    @Before("@Onboarding")
     public void before(){
         this.driver = new ChromeDriver();
         this.pegaLogin = new PegaLogin(driver);

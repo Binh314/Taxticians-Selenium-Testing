@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class PegaLogin {
 
     private WebDriver driver;
-    private static final String baseUrl = "pegURL";
+    private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
 
     @FindBy(id = "txtUserID")
     private WebElement usernameField;
@@ -18,7 +18,7 @@ public class PegaLogin {
     @FindBy(id = "txtPassword")
     private WebElement passwordField;
 
-    @FindBy(name = "sub")
+    @FindBy(id = "sub")
     private WebElement loginBtn;
 
     public PegaLogin(WebDriver driver) {
