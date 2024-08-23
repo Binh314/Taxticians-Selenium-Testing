@@ -7,29 +7,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-    private WebDriver driver;
-    private static final String baseUrl = "http://testfire.net/login.jsp";
+public class PegaLogin {
 
-    /**
-     * @FindBy - used to locate web elements on a webpage using locators
-     */
-    @FindBy(id = "uid")
+    private WebDriver driver;
+    private static final String baseUrl = "pegURL";
+
+    @FindBy(id = "txtUserID")
     private WebElement usernameField;
 
-    @FindBy(id = "passw")
+    @FindBy(id = "txtPassword")
     private WebElement passwordField;
 
-    @FindBy(name = "btnSubmit")
-    private WebElement loginButton;
+    @FindBy(name = "sub")
+    private WebElement loginBtn;
 
-    @FindBy(id = "_ctl0__ctl0_Content_Main_message")
-    private WebElement errorMessage;
-
-    /**
-     * Initializes the driver and sets an implicit wait
-     */
-    public LoginPage(WebDriver driver) {
+    public PegaLogin(WebDriver driver) {
         this.driver = driver;
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         PageFactory.initElements(driver, this);
@@ -41,7 +33,7 @@ public class LoginPage {
      */
     public void get() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1425);
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
@@ -54,7 +46,7 @@ public class LoginPage {
      */
     public void setUsername(String username) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1254);
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
@@ -66,7 +58,7 @@ public class LoginPage {
      */
     public void setPassword(String password) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1145);
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
@@ -78,21 +70,11 @@ public class LoginPage {
      */
     public void clickLogin() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2145);
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
-        loginButton.submit();
-    }
-
-    public boolean errorMessageDisplayed(String message) {
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
-        return errorMessage.getText().contains(message);
+        loginBtn.click();
     }
     
 }
-
