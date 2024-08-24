@@ -44,7 +44,12 @@ public final class Utility {
      * @param driver Selenium web driver used to navigate to the user portal
      */
     public static void goToUserPortal(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        goToPortal(driver, "User Portal");
+    }
+
+
+    public static void goToPortal(WebDriver driver, String portalName) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         Dotenv dotenv = Dotenv.load();
 
         String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
@@ -73,7 +78,7 @@ public final class Utility {
         WebElement launchPortalButton = driver.findElement(By.name("pzStudioHeader_pyDisplayHarness_7"));
         launchPortalButton.click();
 
-        WebElement userPortalButton = driver.findElement(By.xpath("//*[text()='User Portal']"));
+        WebElement userPortalButton = driver.findElement(By.xpath(String.format("//*[text()='%s']", portalName)));
         userPortalButton.click();
 
         Utility.sleep(100);
