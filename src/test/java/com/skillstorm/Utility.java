@@ -72,7 +72,7 @@ public final class Utility {
         WebElement studioDropdown = driver.findElement(By.name("pzComposerBarMain_pyPortalHarness_2"));
         studioDropdown.click();
 
-        Utility.sleep(100);
+        // Utility.sleep(100);
 
         WebElement devStudioButton = driver.findElement(By.xpath("//*[text()='Dev Studio']"));
         devStudioButton.click();
@@ -86,7 +86,7 @@ public final class Utility {
         WebElement userPortalButton = driver.findElement(By.xpath(String.format("//*[text()='%s']", portalName)));
         userPortalButton.click();
 
-        Utility.sleep(100);
+        // Utility.sleep(100);
 
         Set<String> allTabs = driver.getWindowHandles();
         ArrayList<String> tabs = new ArrayList<>(allTabs);
