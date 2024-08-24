@@ -27,7 +27,6 @@ public class DashboardSteps {
         this.driver = new ChromeDriver();
         this.pegaLogin = new PegaLogin(driver);
         this.studioPage = new StudioPage(driver);
-
         dotenv = Dotenv.load();
     }
 
