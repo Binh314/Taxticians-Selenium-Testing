@@ -1,8 +1,9 @@
-package com.skillstorm.selenium;
+package com.skillstorm;
 
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -12,13 +13,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import com.skillstorm.selenium.PegaLogin;
-import com.skillstorm.selenium.Utility;
+import com.skillstorm.Utility;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
-
-import com.skillstorm.selenium.StudioPage;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -46,6 +44,7 @@ public final class Utility {
      * @param driver Selenium web driver used to navigate to the user portal
      */
     public static void goToUserPortal(WebDriver driver) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Dotenv dotenv = Dotenv.load();
 
         String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";

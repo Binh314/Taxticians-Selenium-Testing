@@ -11,21 +11,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import com.skillstorm.selenium.PegaLogin;
-import com.skillstorm.selenium.Utility;
+import com.skillstorm.Utility;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 
-import com.skillstorm.selenium.StudioPage;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class DashboardSteps {
 
     private WebDriver driver;
-    private PegaLogin pegaLogin;
-    private StudioPage studioPage;
     private Dotenv dotenv;
 
     private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
@@ -33,8 +29,8 @@ public class DashboardSteps {
     @Before("@Onboarding")
     public void before(){
         this.driver = new ChromeDriver();
-        this.pegaLogin = new PegaLogin(driver);
-        this.studioPage = new StudioPage(driver);
+        // this.pegaLogin = new PegaLogin(driver);
+        // this.studioPage = new StudioPage(driver);
         dotenv = Dotenv.load();
 
         Utility.goToUserPortal(driver);
