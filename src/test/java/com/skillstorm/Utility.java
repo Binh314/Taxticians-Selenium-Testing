@@ -48,6 +48,11 @@ public final class Utility {
     }
 
 
+    /**
+     * Given a seleneium web driver and portal name, uses it to navigate to that portal in Pega.
+     * @param driver Selenium web driver used to navigate to the portal
+     * @param portalName name of the portal (case sensitive)
+     */
     public static void goToPortal(WebDriver driver, String portalName) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         Dotenv dotenv = Dotenv.load();
