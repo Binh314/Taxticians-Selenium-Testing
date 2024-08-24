@@ -26,53 +26,37 @@ public class StudioPage {
     @FindBy(xpath = "//*[text() = 'User Portal']")
     private WebElement userPortalButton;
 
+    @FindBy(id = "Developer")
+    private WebElement iframe;
+
     public StudioPage(WebDriver driver) {
         this.driver = driver;
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         PageFactory.initElements(driver, this);
     }
 
+
     public boolean appNameDisplay() {
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
+        Utility.sleep(1);
         return appName.isDisplayed();
     }
 
     public void clickAppStudioDropdown() {
-        try {
-            Thread.sleep(1001);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
+        Utility.sleep(1);
         appStudioDropdown.click();
     }
 
     public void clickDevStudio() {
-        try {
-            Thread.sleep(1050);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
+        Utility.sleep(1);
         devStudioButton.click();
     }
 
     public void launchUserPortal() {
-        try {
-            Thread.sleep(2050);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
+        Utility.sleep(2);
+        driver.switchTo().frame(iframe);
+        Utility.sleep(2);
         launchPortalButton.click();
-
-        try {
-            Thread.sleep(1050);
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        Utility.sleep(1);
         userPortalButton.click();
     }
     

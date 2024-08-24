@@ -13,17 +13,22 @@ import io.cucumber.java.en.*;
 
 import com.skillstorm.selenium.StudioPage;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class DashboardSteps {
 
     private WebDriver driver;
     private PegaLogin pegaLogin;
     private StudioPage studioPage;
+    private Dotenv dotenv;
 
     @Before("@Onboarding")
     public void before(){
         this.driver = new ChromeDriver();
         this.pegaLogin = new PegaLogin(driver);
         this.studioPage = new StudioPage(driver);
+
+        dotenv = Dotenv.load();
     }
 
     @Given("I am on the Pega login page")
@@ -33,8 +38,8 @@ public class DashboardSteps {
 
     @When("I enter valid {string} and {string}")
     public void i_enter_valid_credentials(String username, String password){
-        this.pegaLogin.setUsername("user");
-        this.pegaLogin.setPassword("pass");
+        this.pegaLogin.setUsername(dotenv.get("USERNAME"));
+        this.pegaLogin.setPassword(dotenv.get("PASSWORD"));
     }
 
     @And("click the login button")
