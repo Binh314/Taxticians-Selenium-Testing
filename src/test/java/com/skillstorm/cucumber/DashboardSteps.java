@@ -2,11 +2,17 @@ package com.skillstorm.cucumber;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import com.skillstorm.selenium.PegaLogin;
+import com.skillstorm.selenium.Utility;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
@@ -22,58 +28,59 @@ public class DashboardSteps {
     private StudioPage studioPage;
     private Dotenv dotenv;
 
+    private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
+
     @Before("@Onboarding")
     public void before(){
         this.driver = new ChromeDriver();
         this.pegaLogin = new PegaLogin(driver);
         this.studioPage = new StudioPage(driver);
         dotenv = Dotenv.load();
+
+        driver.navigate().to(baseUrl);
+
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        usernameField.sendKeys(dotenv.get("USERNAME"));
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        passwordField.sendKeys(dotenv.get("PASSWORD"));
+
+        WebElement loginBtn = driver.findElement(By.id("sub"));
+        loginBtn.click();
+
+        WebElement studioDropdown = driver.findElement(By.name("pzComposerBarMain_pyPortalHarness_2"));
+        studioDropdown.click();
+
+        Utility.sleep(100);
+
+        WebElement devStudioButton = driver.findElement(By.xpath("//*[text()='Dev Studio']"));
+        devStudioButton.click();
+
+        WebElement iframe = driver.findElement(By.id("Developer"));
+        driver.switchTo().frame(iframe);
+
+        WebElement launchPortalButton = driver.findElement(By.name("pzStudioHeader_pyDisplayHarness_7"));
+        launchPortalButton.click();
+
+        WebElement userPortalButton = driver.findElement(By.xpath("//*[text()='User Portal']"));
+        userPortalButton.click();
+
+        Utility.sleep(100);
+
+        Set<String> allTabs = driver.getWindowHandles();
+        ArrayList<String> tabs = new ArrayList<>(allTabs);
+
+        driver.switchTo().window(tabs.get(1));
+
     }
 
-    @Given("I am on the Pega login page")
-    public void i_am_on_the_login_page(){
-        this.pegaLogin.get();
-    }
-
-    @When("I enter valid {string} and {string}")
-    public void i_enter_valid_credentials(String username, String password){
-        this.pegaLogin.setUsername(dotenv.get("USERNAME"));
-        this.pegaLogin.setPassword(dotenv.get("PASSWORD"));
-    }
-
-    @And("click the login button")
-    public void i_click_the_login_button(){
-        this.pegaLogin.clickLogin();
-    }
-
-    @Then("I will be in app studio")
-    public void in_app_studio(){
-        assertTrue(this.studioPage.appNameDisplay());
-    }
-
-    // @Given("I am on App Studio home page")
-    // public void i_am_on_app_studio_home_page() {
-    //     // Write code here that turns the phrase above into concrete actions
-    //     assertTrue(this.studioPage.appNameDisplay());
-    // }
-
-    @When("I click on App Studio") 
-    public void i_click_the_app_studio() {
-        this.studioPage.clickAppStudioDropdown();
-    }
-
-    @When("click Dev Studio")
-    public void click_dev_studio() {
-        this.studioPage.clickDevStudio();
-    }
     
-    @Then("I will be in Dev Studio")
-    public void i_will_be_in_dev_studio() {
-        assertTrue(true);
+
+    @When("I click the create case button")
+    public void i_click_the_create_case_button() {
+        WebElement createButton = driver.findElement(By.cssSelector("[data-menu-id='DataPortalpyCreateCaseMenu153cef6883']"));
+        createButton.click();
     }
 
-    @When("I launch user portal")
-    public void i_launch_user_portal() {
-        this.studioPage.launchUserPortal();
-    }
+    
 }
