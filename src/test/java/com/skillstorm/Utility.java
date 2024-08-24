@@ -69,6 +69,12 @@ public final class Utility {
         WebElement loginBtn = driver.findElement(By.id("sub"));
         loginBtn.click();
 
+        // WebElement appDropdown = driver.findElement(By.name("pzAppName_pyPortalHarness_1"));
+        // appDropdown.click();
+
+        // WebElement testAppButton = driver.findElement(By.xpath("//*[text()='Taxticians Unit Tests App']"));
+        // testAppButton.click();
+
         WebElement studioDropdown = driver.findElement(By.name("pzComposerBarMain_pyPortalHarness_2"));
         studioDropdown.click();
 
