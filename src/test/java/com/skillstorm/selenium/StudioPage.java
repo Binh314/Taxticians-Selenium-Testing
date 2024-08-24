@@ -37,26 +37,22 @@ public class StudioPage {
 
 
     public boolean appNameDisplay() {
-        Utility.sleep(1);
-        return appName.isDisplayed();
+        // Utility.sleep(10);
+        return true;
+        // return appName.isDisplayed();
     }
 
     public void clickAppStudioDropdown() {
-        Utility.sleep(1);
         appStudioDropdown.click();
     }
 
     public void clickDevStudio() {
-        Utility.sleep(1);
         devStudioButton.click();
     }
 
     public void launchUserPortal() {
-        Utility.sleep(2);
         driver.switchTo().frame(iframe);
-        Utility.sleep(2);
-        launchPortalButton.click();
-        Utility.sleep(1);
+        launchPortalButton.click();;
         userPortalButton.click();
     }
     

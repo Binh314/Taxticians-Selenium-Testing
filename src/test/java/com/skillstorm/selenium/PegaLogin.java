@@ -32,7 +32,6 @@ public class PegaLogin {
      * pause execution for 1000 mili sec before navigation
      */
     public void get() {
-        Utility.sleep(1);
         //driver.get(baseUrl);
         driver.navigate().to(baseUrl);
     }
@@ -41,7 +40,6 @@ public class PegaLogin {
      * entering the username into the username field
      */
     public void setUsername(String username) {
-        Utility.sleep(1);
         usernameField.sendKeys(username);
     }
 
@@ -49,7 +47,6 @@ public class PegaLogin {
      * entering the password into the password field
      */
     public void setPassword(String password) {
-        Utility.sleep(1);
         passwordField.sendKeys(password);
     }
 
@@ -57,7 +54,6 @@ public class PegaLogin {
      * clicks the login in button and submits a form
      */
     public void clickLogin() {
-        Utility.sleep(1);
         loginBtn.click();
     }
     

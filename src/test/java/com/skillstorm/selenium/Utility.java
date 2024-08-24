@@ -10,9 +10,9 @@ public final class Utility {
      * 
      * @param seconds number of seconds to sleep
      */
-    public static void sleep(int seconds) {
+    public static void sleep(int milliseconds) {
         try {
-            Thread.sleep(seconds * 1000);
+            Thread.sleep(milliseconds);
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
