@@ -6,7 +6,9 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Set;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +18,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.skillstorm.Utility;
 
+import dev.failsafe.internal.util.Assert;
 import io.cucumber.java.Before;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -35,6 +39,11 @@ public class DashboardSteps {
         dotenv = Dotenv.load();
 
         Utility.goToUserPortal(driver);
+    }
+
+    @After("@Onboarding")
+    public void after() {
+        this.driver.quit();
     }
 
     
@@ -87,6 +96,21 @@ public class DashboardSteps {
     public void i_get_an_error_message_about_the_short_password() {
         boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The password must contain at least 12 characters']")).size() > 0;
         assertTrue(errorMessageIsPresent);
+        driver.close();
+    }
+
+    @Then("I get an error message about the invalid email")
+    public void i_get_an_error_message_about_the_invalid_email() {
+        try {
+            // Switch to the alert
+            Alert alert = driver.switchTo().alert();
+            alert.accept(); 
+        } catch (NoAlertPresentException e) {
+            throw e;
+        }
+        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='Enter a valid email address']")).size() > 0;
+        assertTrue(errorMessageIsPresent);
+        driver.close();
     }
 
     
