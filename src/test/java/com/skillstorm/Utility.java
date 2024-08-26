@@ -23,9 +23,21 @@ import io.cucumber.java.en.*;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
+import com.github.javafaker.Faker;
+
 public final class Utility {
     private Utility() {
 
+    }
+
+    public static String randomFirstName() {
+        Faker faker = new Faker();
+        return faker.name().firstName().toLowerCase();
+    }
+
+    public static String randomLastName() {
+        Faker faker = new Faker();
+        return faker.name().lastName().toLowerCase();
     }
 
     public static String randomDigits(int numDigits) {

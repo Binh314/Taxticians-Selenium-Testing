@@ -211,7 +211,7 @@ public class DashboardSteps {
     @When("I enter my first name")
     public void i_enter_my_first_name() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
-        field.sendKeys("first");
+        field.sendKeys(Utility.randomFirstName());
     }
 
     @When("I enter my middle initial")
@@ -223,7 +223,7 @@ public class DashboardSteps {
     @When("I enter my last name")
     public void i_enter_my_last_name() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
-        field.sendKeys("last");
+        field.sendKeys(Utility.randomLastName());
     }
 
     @When("I enter a valid SSN")
@@ -253,7 +253,7 @@ public class DashboardSteps {
     @When("I enter a valid zip code")
     public void i_enter_a_valid_zip_code() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pZip"));
-        field.sendKeys("12345");
+        field.sendKeys("02142");
     }
 
     @When("I choose filing jointly")
@@ -267,10 +267,10 @@ public class DashboardSteps {
     public void i_enter_my_spouses_information() {
     
         WebElement firstNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSpouseFirstNameM"));
-        firstNameField.sendKeys("spousefirst");
+        firstNameField.sendKeys(Utility.randomFirstName());
 
         WebElement lastNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSpouseLastName"));
-        lastNameField.sendKeys("spouselast");
+        lastNameField.sendKeys(Utility.randomLastName());
 
         // WebElement middleInitialField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSpouseMiddleInitial"));
         // middleInitialField.sendKeys("S");
@@ -283,16 +283,16 @@ public class DashboardSteps {
     public void i_enter_my_dependents_information() {
     
         WebElement firstNameField = driver.findElement(By.name("$PTempDependent$pFirstName"));
-        firstNameField.sendKeys("childfirst");
+        firstNameField.sendKeys(Utility.randomFirstName());
 
         WebElement lastNameField = driver.findElement(By.name("$PTempDependent$pLastName"));
-        lastNameField.sendKeys("childlast");
+        lastNameField.sendKeys(Utility.randomLastName());
 
         WebElement ssnField = driver.findElement(By.name("$PTempDependent$pSSN"));
         ssnField.sendKeys(Utility.randomDigits(9));
 
         WebElement relationField = driver.findElement(By.name("$PTempDependent$pRelationship"));
-        relationField.sendKeys("Mother");
+        relationField.sendKeys("parent");
 
         List<WebElement> childTaxCreditChecks = driver.findElements(By.name("$PTempDependent$pChildTaxCredit"));
         childTaxCreditChecks.get(1).click();
