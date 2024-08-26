@@ -61,8 +61,8 @@ public class DashboardSteps {
         createButton.click();
 
         Utility.sleep(1000);
-        WebElement registerTaxpayerButton = driver.findElement(By.xpath("//*[text()='Register Taxpayer']"));
-        registerTaxpayerButton.click();
+        WebElement fileTaxButton = driver.findElement(By.xpath("//*[text()='File Individual Taxes']"));
+        fileTaxButton.click();
     }
 
     @After("@Onboarding")
@@ -194,4 +194,51 @@ public class DashboardSteps {
         driver.quit();
     }
     
+    @When("I enter my first name")
+    public void i_enter_my_first_name() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
+        field.sendKeys("first");
+    }
+
+    @When("I enter my middle initial")
+    public void i_enter_my_middle_initial() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pMiddleInitial"));
+        field.sendKeys("m");
+    }
+
+    @When("I enter my last name")
+    public void i_enter_my_last_name() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
+        field.sendKeys("last");
+    }
+
+    @When("I enter a valid SSN")
+    public void i_enter_a_valid_SSN() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSSN"));
+        field.sendKeys("123456789");
+    }
+
+    @When("I enter my street address")
+    public void i_enter_my_street_address() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pStreetAddress"));
+        field.sendKeys("1 Main St");
+    }
+
+    @When("I enter my city")
+    public void i_enter_my_city() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pCity"));
+        field.sendKeys("Cambridge");
+    }
+
+    @When("I enter my state")
+    public void i_enter_my_state() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pState"));
+        field.sendKeys("Massachusetts");
+    }
+
+    @When("I enter a valid zip code")
+    public void i_enter_a_valid_zip_code() {
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pZip"));
+        field.sendKeys("02142");
+    }
 }
