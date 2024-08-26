@@ -11,3 +11,10 @@ And I enter my city
 And I enter my state
 And I enter a valid zip code
 And I click continue
+And I choose filing jointly
+And I enter my spouse's information
+And I click continue
+And I click add dependents
+And I enter my dependent's information
+And I click submit
+And I click create

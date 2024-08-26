@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +26,18 @@ import io.github.cdimascio.dotenv.Dotenv;
 public final class Utility {
     private Utility() {
 
+    }
+
+    public static String randomDigits(int numDigits) {
+        String digits = "";
+        Random random = new Random();
+
+        for (int i = 0; i < numDigits; i++) {
+            int digit = random.nextInt(10);
+            digits += digit;
+        }
+
+        return digits;
     }
 
     /**

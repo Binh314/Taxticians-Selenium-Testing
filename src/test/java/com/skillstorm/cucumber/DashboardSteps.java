@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -14,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.skillstorm.Utility;
@@ -30,6 +33,8 @@ public class DashboardSteps {
     private Dotenv dotenv;
 
     private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
+
+
 
     @Before("@Onboarding")
     public void beforeOnboarding(){
@@ -113,8 +118,10 @@ public class DashboardSteps {
     @When("I click submit")
     public void i_click_submit() {
         Utility.sleep(100);
-        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        // WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        WebElement submitButton = driver.findElement(By.id("Submit"));
         submitButton.click();
+        Utility.sleep(1000);
     }
 
     @When("I click create")
@@ -128,30 +135,37 @@ public class DashboardSteps {
     @When("I click continue")
     public void i_click_continue() {
         Utility.sleep(100);
-        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Continue']"));
-        continueButton.click();
+        WebElement button = driver.findElement(By.xpath("//button[text()='Continue']"));
+        button.click();
     }
 
     @When("I click finish")
     public void i_click_finish() {
         Utility.sleep(100);
-        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Finish']"));
-        continueButton.click();
+        WebElement button = driver.findElement(By.xpath("//button[text()='Finish']"));
+        button.click();
     }
 
     @When("I click go")
     public void i_click_go() {
         Utility.sleep(100);
-        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Go']"));
-        continueButton.click();
+        WebElement button = driver.findElement(By.xpath("//button[text()='Go']"));
+        button.click();
         Utility.sleep(1000);
     }
 
     @When("I click approve")
     public void i_click_approve() {
         Utility.sleep(100);
-        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Approve']"));
-        continueButton.click();
+        WebElement button = driver.findElement(By.xpath("//button[text()='Approve']"));
+        button.click();
+    }
+
+    @When("I click add dependents")
+    public void i_click_add_dependents() {
+        Utility.sleep(100);
+        WebElement button = driver.findElement(By.xpath("//button[text()='Add dependents']"));
+        button.click();
     }
 
     @Then("I get an error message about the short password")
@@ -215,30 +229,74 @@ public class DashboardSteps {
     @When("I enter a valid SSN")
     public void i_enter_a_valid_SSN() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSSN"));
-        field.sendKeys("123456789");
+        field.sendKeys(Utility.randomDigits(9));
     }
 
     @When("I enter my street address")
     public void i_enter_my_street_address() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pStreetAddress"));
-        field.sendKeys("1 Main St");
+        field.sendKeys("1 main st");
     }
 
     @When("I enter my city")
     public void i_enter_my_city() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pCity"));
-        field.sendKeys("Cambridge");
+        field.sendKeys("cambridge");
     }
 
     @When("I enter my state")
     public void i_enter_my_state() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pState"));
-        field.sendKeys("Massachusetts");
+        field.sendKeys("massachusetts");
     }
 
     @When("I enter a valid zip code")
     public void i_enter_a_valid_zip_code() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pZip"));
-        field.sendKeys("02142");
+        field.sendKeys("12345");
     }
+
+    @When("I choose filing jointly")
+    public void i_choose_filing_jointly() {
+        WebElement dropdownElement = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFilingStatus"));
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText("Married Filing Jointly (even if only one had income)");
+    }
+
+    @When("I enter my spouse's information") 
+    public void i_enter_my_spouses_information() {
+    
+        WebElement firstNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSpouseFirstNameM"));
+        firstNameField.sendKeys("spousefirst");
+
+        WebElement lastNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSpouseLastName"));
+        lastNameField.sendKeys("spouselast");
+
+        // WebElement middleInitialField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSpouseMiddleInitial"));
+        // middleInitialField.sendKeys("S");
+
+        WebElement ssnField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSpouseSSN"));
+        ssnField.sendKeys(Utility.randomDigits(9));
+    }
+
+    @When("I enter my dependent's information") 
+    public void i_enter_my_dependents_information() {
+    
+        WebElement firstNameField = driver.findElement(By.name("$PTempDependent$pFirstName"));
+        firstNameField.sendKeys("childfirst");
+
+        WebElement lastNameField = driver.findElement(By.name("$PTempDependent$pLastName"));
+        lastNameField.sendKeys("childlast");
+
+        WebElement ssnField = driver.findElement(By.name("$PTempDependent$pSSN"));
+        ssnField.sendKeys(Utility.randomDigits(9));
+
+        WebElement relationField = driver.findElement(By.name("$PTempDependent$pRelationship"));
+        relationField.sendKeys("Mother");
+
+        List<WebElement> childTaxCreditChecks = driver.findElements(By.name("$PTempDependent$pChildTaxCredit"));
+        childTaxCreditChecks.get(1).click();
+    }
+
+
 }
