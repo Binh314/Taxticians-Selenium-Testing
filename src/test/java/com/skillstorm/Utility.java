@@ -12,6 +12,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.skillstorm.Utility;
 
@@ -78,7 +80,10 @@ public final class Utility {
         WebElement studioDropdown = driver.findElement(By.name("pzComposerBarMain_pyPortalHarness_2"));
         studioDropdown.click();
 
-        WebElement devStudioButton = driver.findElement(By.xpath("//*[text()='Dev Studio']"));
+        Utility.sleep(1500);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement devStudioButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Dev Studio']")));
         devStudioButton.click();
 
         WebElement iframe = driver.findElement(By.id("Developer"));
