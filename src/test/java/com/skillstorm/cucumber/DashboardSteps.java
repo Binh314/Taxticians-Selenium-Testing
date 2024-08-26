@@ -39,11 +39,18 @@ public class DashboardSteps {
         dotenv = Dotenv.load();
 
         Utility.goToUserPortal(driver);
+
+        WebElement createButton = driver.findElement(By.cssSelector("[data-menu-id='DataPortalpyCreateCaseMenu153cef6883']"));
+        createButton.click();
+
+        Utility.sleep(1000);
+        WebElement registerTaxpayerButton = driver.findElement(By.xpath("//*[text()='Register Taxpayer']"));
+        registerTaxpayerButton.click();
     }
 
     @After("@Onboarding")
     public void after() {
-        this.driver.quit();
+        // this.driver.quit();
     }
 
     
@@ -96,7 +103,7 @@ public class DashboardSteps {
     public void i_get_an_error_message_about_the_short_password() {
         boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The password must contain at least 12 characters']")).size() > 0;
         assertTrue(errorMessageIsPresent);
-        driver.close();
+        driver.quit();
     }
 
     @Then("I get an error message about the invalid email")
@@ -110,7 +117,21 @@ public class DashboardSteps {
         }
         boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='Enter a valid email address']")).size() > 0;
         assertTrue(errorMessageIsPresent);
-        driver.close();
+        driver.quit();
+    }
+
+    @Then("I get an error message about a blank value")
+    public void i_get_an_error_message_about_a_blank_value() {
+        try {
+            // Switch to the alert
+            Alert alert = driver.switchTo().alert();
+            alert.accept(); 
+        } catch (NoAlertPresentException e) {
+            throw e;
+        }
+        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='Value cannot be blank']")).size() > 0;
+        assertTrue(errorMessageIsPresent);
+        driver.quit();
     }
 
     
