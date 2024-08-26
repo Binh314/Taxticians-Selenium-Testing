@@ -62,6 +62,8 @@ public class DashboardSteps {
 
         Utility.goToUserPortal(driver);
 
+        Utility.sleep(100);
+
         WebElement createButton = driver.findElement(By.cssSelector("[data-menu-id='DataPortalpyCreateCaseMenu153cef6883']"));
         createButton.click();
 
@@ -129,7 +131,7 @@ public class DashboardSteps {
         Utility.sleep(100);
         WebElement createButton = driver.findElement(By.xpath("//button[text()='Create']"));
         createButton.click();
-        Utility.sleep(1000);
+        Utility.sleep(500);
     }
 
     @When("I click continue")
@@ -175,6 +177,34 @@ public class DashboardSteps {
         button.click();
     }
 
+    @When("I click social security")
+    public void i_click_social_security() {
+        Utility.sleep(100);
+        WebElement button = driver.findElement(By.cssSelector("[aria-label='Social Security']"));
+        button.click();
+    }
+
+    @When("I click income")
+    public void i_click_income() {
+        Utility.sleep(100);
+        WebElement button = driver.findElement(By.cssSelector("[aria-label='Income']"));
+        button.click();
+    }
+
+    @When("I click medicare")
+    public void i_click_medicare() {
+        Utility.sleep(100);
+        WebElement button = driver.findElement(By.cssSelector("[aria-label='Medicare']"));
+        button.click();
+    }
+
+    @When("I click no")
+    public void i_click_no() {
+        Utility.sleep(100);
+        WebElement button = driver.findElement(By.cssSelector("[value='No']"));
+        button.click();
+    }
+
     @Then("I get an error message about the short password")
     public void i_get_an_error_message_about_the_short_password() {
         boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The password must contain at least 12 characters']")).size() > 0;
@@ -217,16 +247,17 @@ public class DashboardSteps {
     
     @When("I enter my personal information")
     public void i_enter_my_personal_information() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
-        field.sendKeys(Utility.randomFirstName());
+        // WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
+        // field.sendKeys(Utility.randomFirstName());
 
-        WebElement miField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pMiddleInitial"));
-        miField.sendKeys("m");
+        // WebElement miField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pMiddleInitial"));
+        // miField.sendKeys("m");
 
-        WebElement lastNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
-        lastNameField.sendKeys(Utility.randomLastName());
+        // WebElement lastNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
+        // lastNameField.sendKeys(Utility.randomLastName());
 
         WebElement ssnField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSSN"));
+        ssnField.clear();
         ssnField.sendKeys(Utility.randomDigits(9));
     }
 
@@ -298,6 +329,33 @@ public class DashboardSteps {
         WebElement employerAddress = driver.findElement(By.name("$PTempW2$pEmployerAddress"));
         employerAddress.sendKeys("10151 Deerwood Park Blvd Building 100, Suite 425, Jacksonville, FL 32256");
 
+    }
+
+    @When("I enter my social security information")
+    public void i_enter_my_social_security_information() {
+        WebElement box4 = driver.findElement(By.name("$PTempW2$pSocialSecurityTax"));
+        box4.sendKeys("3100");
+
+        WebElement box3 = driver.findElement(By.name("$PTempW2$pSocialSecurityWages"));
+        box3.sendKeys("50000");
+    }
+
+    @When("I enter my income information")
+    public void i_enter_my_income_information() {
+        WebElement box2 = driver.findElement(By.name("$PTempW2$pIncomeTaxWithheld"));
+        box2.sendKeys("5000");
+
+        WebElement box1 = driver.findElement(By.name("$PTempW2$pWagesTipsOtherCompensation"));
+        box1.sendKeys("50000");
+    }
+
+    @When("I enter my medicare information")
+    public void i_enter_my_medicare_information() {
+        WebElement box5 = driver.findElement(By.name("$PTempW2$pMedicareWages"));
+        box5.sendKeys("50000");
+
+        WebElement box6 = driver.findElement(By.name("$PTempW2$pMedicareTax"));
+        box6.sendKeys("725");
     }
 
 }

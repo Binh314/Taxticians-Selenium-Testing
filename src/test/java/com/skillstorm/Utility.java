@@ -93,39 +93,40 @@ public final class Utility {
         WebElement passwordField = driver.findElement(By.id("txtPassword"));
         passwordField.sendKeys(dotenv.get("PASSWORD"));
 
+
         WebElement loginBtn = driver.findElement(By.id("sub"));
         loginBtn.click();
 
-        // WebElement appDropdown = driver.findElement(By.name("pzAppName_pyPortalHarness_1"));
-        // appDropdown.click();
+        // // WebElement appDropdown = driver.findElement(By.name("pzAppName_pyPortalHarness_1"));
+        // // appDropdown.click();
 
-        // WebElement testAppButton = driver.findElement(By.xpath("//*[text()='Taxticians Unit Tests App']"));
-        // testAppButton.click();
+        // // WebElement testAppButton = driver.findElement(By.xpath("//*[text()='Taxticians Unit Tests App']"));
+        // // testAppButton.click();
 
-        WebElement studioDropdown = driver.findElement(By.name("pzComposerBarMain_pyPortalHarness_2"));
-        studioDropdown.click();
+        // WebElement studioDropdown = driver.findElement(By.name("pzComposerBarMain_pyPortalHarness_2"));
+        // studioDropdown.click();
 
-        Utility.sleep(1500);
+        // Utility.sleep(1500);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement devStudioButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Dev Studio']")));
-        devStudioButton.click();
+        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // WebElement devStudioButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Dev Studio']")));
+        // devStudioButton.click();
 
-        WebElement iframe = driver.findElement(By.id("Developer"));
-        driver.switchTo().frame(iframe);
+        // WebElement iframe = driver.findElement(By.id("Developer"));
+        // driver.switchTo().frame(iframe);
 
-        WebElement launchPortalButton = driver.findElement(By.name("pzStudioHeader_pyDisplayHarness_7"));
-        launchPortalButton.click();
+        // WebElement launchPortalButton = driver.findElement(By.name("pzStudioHeader_pyDisplayHarness_7"));
+        // launchPortalButton.click();
 
-        WebElement userPortalButton = driver.findElement(By.xpath(String.format("//*[text()='%s']", portalName)));
-        userPortalButton.click();
+        // WebElement userPortalButton = driver.findElement(By.xpath(String.format("//*[text()='%s']", portalName)));
+        // userPortalButton.click();
 
-        Utility.sleep(100);
+        // Utility.sleep(100);
 
-        Set<String> allTabs = driver.getWindowHandles();
-        ArrayList<String> tabs = new ArrayList<>(allTabs);
+        // Set<String> allTabs = driver.getWindowHandles();
+        // ArrayList<String> tabs = new ArrayList<>(allTabs);
 
-        driver.switchTo().window(tabs.get(1));
+        // driver.switchTo().window(tabs.get(1));
     }
     
 
