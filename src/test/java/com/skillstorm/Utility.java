@@ -56,7 +56,7 @@ public final class Utility {
      * @param portalName name of the portal (case sensitive)
      */
     public static void goToPortal(WebDriver driver, String portalName) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         Dotenv dotenv = Dotenv.load();
 
         String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";

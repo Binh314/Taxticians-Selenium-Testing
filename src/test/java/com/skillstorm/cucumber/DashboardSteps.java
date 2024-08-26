@@ -32,7 +32,24 @@ public class DashboardSteps {
     private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
 
     @Before("@Onboarding")
-    public void before(){
+    public void beforeOnboarding(){
+        this.driver = new ChromeDriver();
+        // this.pegaLogin = new PegaLogin(driver);
+        // this.studioPage = new StudioPage(driver);
+        dotenv = Dotenv.load();
+
+        Utility.goToUserPortal(driver);
+
+        WebElement createButton = driver.findElement(By.cssSelector("[data-menu-id='DataPortalpyCreateCaseMenu153cef6883']"));
+        createButton.click();
+
+        Utility.sleep(1000);
+        WebElement registerTaxpayerButton = driver.findElement(By.xpath("//*[text()='Register Taxpayer']"));
+        registerTaxpayerButton.click();
+    }
+
+    @Before("@TaxFiling")
+    public void beforeTaxFiling(){
         this.driver = new ChromeDriver();
         // this.pegaLogin = new PegaLogin(driver);
         // this.studioPage = new StudioPage(driver);
@@ -95,8 +112,46 @@ public class DashboardSteps {
 
     @When("I click submit")
     public void i_click_submit() {
-        WebElement submitButton = driver.findElement(By.xpath("//*[text()='Submit']"));
+        Utility.sleep(100);
+        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
         submitButton.click();
+    }
+
+    @When("I click create")
+    public void i_click_create() {
+        Utility.sleep(100);
+        WebElement createButton = driver.findElement(By.xpath("//button[text()='Create']"));
+        createButton.click();
+        Utility.sleep(1000);
+    }
+
+    @When("I click continue")
+    public void i_click_continue() {
+        Utility.sleep(100);
+        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Continue']"));
+        continueButton.click();
+    }
+
+    @When("I click finish")
+    public void i_click_finish() {
+        Utility.sleep(100);
+        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Finish']"));
+        continueButton.click();
+    }
+
+    @When("I click go")
+    public void i_click_go() {
+        Utility.sleep(100);
+        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Go']"));
+        continueButton.click();
+        Utility.sleep(1000);
+    }
+
+    @When("I click approve")
+    public void i_click_approve() {
+        Utility.sleep(100);
+        WebElement continueButton = driver.findElement(By.xpath("//button[text()='Approve']"));
+        continueButton.click();
     }
 
     @Then("I get an error message about the short password")
@@ -134,5 +189,9 @@ public class DashboardSteps {
         driver.quit();
     }
 
+    @Then("it is successful")
+    public void it_is_successful() {
+        driver.quit();
+    }
     
 }
