@@ -90,6 +90,8 @@ public final class Utility {
         WebElement userPortalButton = driver.findElement(By.xpath(String.format("//*[text()='%s']", portalName)));
         userPortalButton.click();
 
+        Utility.sleep(100);
+
         Set<String> allTabs = driver.getWindowHandles();
         ArrayList<String> tabs = new ArrayList<>(allTabs);
 

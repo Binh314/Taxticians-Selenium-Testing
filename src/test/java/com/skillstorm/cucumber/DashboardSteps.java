@@ -44,5 +44,22 @@ public class DashboardSteps {
         createButton.click();
     }
 
+    @When("I click Register Taxpayer")
+    public void i_click_register_taxpayer() {
+        Utility.sleep(500);
+        WebElement registerTaxpayerButton = driver.findElement(By.xpath("//*[text()='Register Taxpayer']"));
+        // driver.findElement(By.xpath("//*[@title='Register Taxpayer']"));
+        registerTaxpayerButton.click();
+    }
+
+    @When("I enter a valid email and password")
+    public void i_enter_a_valid_email_and_password() {
+        WebElement emailField = driver.findElement(By.id("dcbbc9a8"));
+        emailField.sendKeys("example@skillstorm.com");
+
+        WebElement passwordField = driver.findElement(By.id("6a51482b"));
+        passwordField.sendKeys("password");
+    }
+
     
 }
