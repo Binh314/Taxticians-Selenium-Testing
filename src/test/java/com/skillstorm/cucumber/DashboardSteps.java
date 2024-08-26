@@ -168,6 +168,13 @@ public class DashboardSteps {
         button.click();
     }
 
+    @When("I click add w2")
+    public void i_click_add_w2() {
+        Utility.sleep(100);
+        WebElement button = driver.findElement(By.xpath("//button[text()='Add W2']"));
+        button.click();
+    }
+
     @Then("I get an error message about the short password")
     public void i_get_an_error_message_about_the_short_password() {
         boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The password must contain at least 12 characters']")).size() > 0;
@@ -208,52 +215,34 @@ public class DashboardSteps {
         driver.quit();
     }
     
-    @When("I enter my first name")
-    public void i_enter_my_first_name() {
+    @When("I enter my personal information")
+    public void i_enter_my_personal_information() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
         field.sendKeys(Utility.randomFirstName());
+
+        WebElement miField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pMiddleInitial"));
+        miField.sendKeys("m");
+
+        WebElement lastNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
+        lastNameField.sendKeys(Utility.randomLastName());
+
+        WebElement ssnField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSSN"));
+        ssnField.sendKeys(Utility.randomDigits(9));
     }
 
-    @When("I enter my middle initial")
-    public void i_enter_my_middle_initial() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pMiddleInitial"));
-        field.sendKeys("m");
-    }
+    @When("I enter my address")
+    public void i_enter_my_address() {
+        WebElement streetAddressField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pStreetAddress"));
+        streetAddressField.sendKeys("1 main st");
 
-    @When("I enter my last name")
-    public void i_enter_my_last_name() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
-        field.sendKeys(Utility.randomLastName());
-    }
+        WebElement cityField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pCity"));
+        cityField.sendKeys("cambridge");
 
-    @When("I enter a valid SSN")
-    public void i_enter_a_valid_SSN() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSSN"));
-        field.sendKeys(Utility.randomDigits(9));
-    }
+        WebElement stateField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pState"));
+        stateField.sendKeys("massachusetts");
 
-    @When("I enter my street address")
-    public void i_enter_my_street_address() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pStreetAddress"));
-        field.sendKeys("1 main st");
-    }
-
-    @When("I enter my city")
-    public void i_enter_my_city() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pCity"));
-        field.sendKeys("cambridge");
-    }
-
-    @When("I enter my state")
-    public void i_enter_my_state() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pState"));
-        field.sendKeys("massachusetts");
-    }
-
-    @When("I enter a valid zip code")
-    public void i_enter_a_valid_zip_code() {
-        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pZip"));
-        field.sendKeys("02142");
+        WebElement zipField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pZip"));
+        zipField.sendKeys("02142");
     }
 
     @When("I choose filing jointly")
@@ -298,5 +287,17 @@ public class DashboardSteps {
         childTaxCreditChecks.get(1).click();
     }
 
+    @When("I enter my employer information")
+    public void i_enter_my_employer_information() {
+        WebElement einField = driver.findElement(By.name("$PTempW2$pEmployerEIN"));
+        einField.sendKeys(Utility.randomDigits(9));
+
+        WebElement employerNameField = driver.findElement(By.name("$PTempW2$pEmployerName"));
+        employerNameField.sendKeys("SkillStorm");
+
+        WebElement employerAddress = driver.findElement(By.name("$PTempW2$pEmployerAddress"));
+        employerAddress.sendKeys("10151 Deerwood Park Blvd Building 100, Suite 425, Jacksonville, FL 32256");
+
+    }
 
 }
