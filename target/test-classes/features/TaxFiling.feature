@@ -30,3 +30,12 @@ And I click no
 And I click continue
 And I click no
 And I click continue
+And I click yes
+And I enter my 1099R information
+And I click continue
+And I click no
+And I click continue
+And I click all no
+And I click continue
+And I click all no
+And I click finish

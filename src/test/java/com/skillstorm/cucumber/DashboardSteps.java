@@ -10,11 +10,14 @@ import java.util.Random;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -200,8 +203,58 @@ public class DashboardSteps {
 
     @When("I click no")
     public void i_click_no() {
-        Utility.sleep(100);
-        WebElement button = driver.findElement(By.cssSelector("[value='No']"));
+        Utility.sleep(1000);
+
+        // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
+        Actions actions = new Actions(driver);
+        // Scroll up using the Page Up key
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Utility.sleep(500);
+
+        WebElement button = driver.findElement(By.xpath("//label[text()='No']"));
+        button.click();
+    }
+
+    @When("I click all no")
+    public void i_click_all_no() {
+        Utility.sleep(1000);
+
+        // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
+        Actions actions = new Actions(driver);
+        // Scroll up using the Page Up key
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Utility.sleep(500);
+
+        List<WebElement> buttons = driver.findElements(By.xpath("//label[text()='No']"));
+        int numNos = buttons.size();
+        for (int i = 0; i < numNos; i++) {
+            buttons.get(i).click();
+            Utility.sleep(500);
+
+            // keeps elements from going stale
+            buttons = driver.findElements(By.xpath("//label[text()='No']"));
+        }
+            
+    }
+
+    @When("I click yes")
+    public void i_click_yes() {
+        Utility.sleep(1000);
+
+        // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
+        Actions actions = new Actions(driver);
+        // Scroll up using the Page Up key
+        actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.PAGE_UP).perform();
+
+        Utility.sleep(500);
+
+        // WebElement button = driver.findElement(By.cssSelector("[value='No']"));
+        WebElement button = driver.findElement(By.xpath("//label[text()='Yes']"));
         button.click();
     }
 
@@ -337,13 +390,13 @@ public class DashboardSteps {
         box4.sendKeys("3100");
 
         WebElement box3 = driver.findElement(By.name("$PTempW2$pSocialSecurityWages"));
-        box3.sendKeys("50000");
+        box3.sendKeys("50,000");
     }
 
     @When("I enter my income information")
     public void i_enter_my_income_information() {
         WebElement box2 = driver.findElement(By.name("$PTempW2$pIncomeTaxWithheld"));
-        box2.sendKeys("5000");
+        box2.sendKeys("5,000");
 
         WebElement box1 = driver.findElement(By.name("$PTempW2$pWagesTipsOtherCompensation"));
         box1.sendKeys("50000");
@@ -352,10 +405,32 @@ public class DashboardSteps {
     @When("I enter my medicare information")
     public void i_enter_my_medicare_information() {
         WebElement box5 = driver.findElement(By.name("$PTempW2$pMedicareWages"));
-        box5.sendKeys("50000");
+        box5.sendKeys("50,000");
 
         WebElement box6 = driver.findElement(By.name("$PTempW2$pMedicareTax"));
         box6.sendKeys("725");
+    }
+
+    @When("I enter my 1099R information")
+    public void i_enter_my_1099R_information() {
+        WebElement box1 = driver.findElement(By.name("$PpyWorkPage$pNew1099R$pGrossDistribution"));
+        box1.sendKeys("15,000");
+        // 1, 2, 4, 5, 14, 16, 7
+
+        WebElement box2 = driver.findElement(By.name("$PpyWorkPage$pNew1099R$pTaxableAmount"));
+        box2.sendKeys("13,500");
+
+        WebElement box4 = driver.findElement(By.name("$PpyWorkPage$pNew1099R$pFederalIncomeTaxWithheld"));
+        box4.sendKeys("1,500");
+
+        WebElement box5 = driver.findElement(By.name("$PpyWorkPage$pNew1099R$pEmployeeContributionDesignatedRothContributions"));
+        box5.sendKeys("1,500");
+
+        WebElement box14 = driver.findElement(By.name("$PpyWorkPage$pNew1099R$pSateTaxWithheld"));
+        box14.sendKeys("15000");
+
+        WebElement box7 = driver.findElement(By.name("$PpyWorkPage$pNew1099R$pDistributionCodes"));
+        box7.sendKeys("7");
     }
 
 }
