@@ -151,10 +151,18 @@ public class DashboardSteps {
     @When("I click submit")
     public void i_click_submit() {
         Utility.sleep(100);
-        // WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        // WebElement submitButton = driver.findElement(By.id("Submit"));
+        submitButton.click();
+        Utility.sleep(750);
+    }
+
+    @When("I click submit on overlay")
+    public void i_click_submit_on_overlay() {
+        Utility.sleep(100);
         WebElement submitButton = driver.findElement(By.id("Submit"));
         submitButton.click();
-        Utility.sleep(500);
+        Utility.sleep(750);
     }
 
     @When("I click login")
@@ -264,7 +272,7 @@ public class DashboardSteps {
 
     @When("I click all no")
     public void i_click_all_no() {
-        Utility.sleep(100);
+        Utility.sleep(500);
 
         List<WebElement> buttons = driver.findElements(By.xpath("//label[text()='No']"));
         int numNos = buttons.size();

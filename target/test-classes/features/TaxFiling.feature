@@ -12,10 +12,11 @@ And I enter my spouse's information
 And I click continue
 And I click add dependents
 And I enter my dependent's information
-And I click submit
+And I click submit on overlay
 And I click create
 
 # Income Stage
+## W2
 And I click add w2
 And I enter my employer information
 And I click social security
@@ -24,35 +25,49 @@ And I click income
 And I enter my income information
 And I click medicare
 And I enter my medicare information
-And I click submit
+And I click submit on overlay
 And I click continue
+
 And I click no
 And I click continue
+
 And I click no
 And I click continue
+## Retirement Plans
 And I click yes
 And I enter my 1099R information
 And I click continue
+
 And I click no
 And I click continue
+
 And I click all no
 And I click continue
+
 And I click all no
 And I click finish
 
 # Deductions Stage
+
+## Medical
 And I click no
 And I click continue
+## Mortage
 And I click no
 And I click continue
+## Charitable Gifts
 And I click no
 And I click continue
+## Real Estate
 And I click no
-# And I click income or sales taxes
-# And I click all no
 And I click continue
-And I click all no
+## State and Local Income
+And I click no
 And I click continue
+## Self Employment
+And I click no
+And I click continue
+## Review
 And I click advance this case
 
 # Tax and Credits Stage
