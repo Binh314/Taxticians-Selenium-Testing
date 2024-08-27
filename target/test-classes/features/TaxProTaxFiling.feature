@@ -1,5 +1,5 @@
-@TaxpayerTaxFiling
-Feature: File Individual Taxes by Taxpayer
+@TaxProTaxFiling
+Feature: File Individual Taxes by Tax Professional
 
 Scenario: Successful Tax Filing
 

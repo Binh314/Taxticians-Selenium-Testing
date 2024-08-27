@@ -59,7 +59,7 @@ public class DashboardSteps {
     }
 
     @Before("@TaxpayerTaxFiling")
-    public void beforeTaxFiling(){
+    public void beforeTaxpayerFiling(){
         this.driver = new ChromeDriver();
         // this.pegaLogin = new PegaLogin(driver);
         // this.studioPage = new StudioPage(driver);
@@ -75,6 +75,38 @@ public class DashboardSteps {
 
         WebElement passwordField = driver.findElement(By.id("txtPassword"));
         passwordField.sendKeys(dotenv.get("TAXPAYER_PASSWORD"));
+
+
+        WebElement loginBtn = driver.findElement(By.id("sub"));
+        loginBtn.click();
+
+        Utility.sleep(100);
+
+        WebElement createButton = driver.findElement(By.cssSelector("[data-menu-id='DataPortalpyCreateCaseMenu153cef6883']"));
+        createButton.click();
+
+        Utility.sleep(1000);
+        WebElement fileTaxButton = driver.findElement(By.xpath("//*[text()='File Individual Taxes']"));
+        fileTaxButton.click();
+    }
+
+    @Before("@TaxProTaxFiling")
+    public void beforeTaxProFiling(){
+        this.driver = new ChromeDriver();
+        // this.pegaLogin = new PegaLogin(driver);
+        // this.studioPage = new StudioPage(driver);
+        dotenv = Dotenv.load();
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        Dotenv dotenv = Dotenv.load();
+
+        driver.navigate().to(baseUrl);
+
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        usernameField.sendKeys(dotenv.get("TAXPRO_USERNAME"));
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        passwordField.sendKeys(dotenv.get("TAXPRO_PASSWORD"));
 
 
         WebElement loginBtn = driver.findElement(By.id("sub"));
