@@ -1,11 +1,10 @@
-@TaxFiling
-Feature: File Individual Taxes
+@TaxpayerTaxFiling
+Feature: File Individual Taxes by Taxpayer
 
 Scenario: Successful Tax Filing
 
 # Filer Information Stage
-When I enter my personal information
-# And I enter my address
+When I change my ssn
 And I click continue
 And I choose filing jointly
 And I enter my spouse's information
@@ -28,22 +27,28 @@ And I enter my medicare information
 And I click submit on overlay
 And I click continue
 
+## Government Payment Information
 And I click no
 And I click continue
 
+## Interest Income
 And I click no
 And I click continue
+
 ## Retirement Plans
 And I click yes
 And I enter my 1099R information
 And I click continue
 
+# Social Security Income
 And I click no
 And I click continue
 
+## Additional Income Scenarios
 And I click all no
 And I click continue
 
+## Additional Income Scenarios Continued
 And I click all no
 And I click finish
 
@@ -76,8 +81,6 @@ And I click advance this case
 And I click continue
 ## Student?
 And I click no
-And I click continue
-## Calculated Lines
 And I click continue
 ## Review
 And I click finish

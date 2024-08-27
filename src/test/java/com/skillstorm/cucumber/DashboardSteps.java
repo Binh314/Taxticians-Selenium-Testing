@@ -58,14 +58,27 @@ public class DashboardSteps {
         registerTaxpayerButton.click();
     }
 
-    @Before("@TaxFiling")
+    @Before("@TaxpayerTaxFiling")
     public void beforeTaxFiling(){
         this.driver = new ChromeDriver();
         // this.pegaLogin = new PegaLogin(driver);
         // this.studioPage = new StudioPage(driver);
         dotenv = Dotenv.load();
 
-        Utility.goToUserPortal(driver);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        Dotenv dotenv = Dotenv.load();
+
+        driver.navigate().to(baseUrl);
+
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        usernameField.sendKeys(dotenv.get("TAXPAYER_USERNAME"));
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        passwordField.sendKeys(dotenv.get("TAXPAYER_PASSWORD"));
+
+
+        WebElement loginBtn = driver.findElement(By.id("sub"));
+        loginBtn.click();
 
         Utility.sleep(100);
 
@@ -81,6 +94,7 @@ public class DashboardSteps {
     public void beforeLogin(){
         this.driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        dotenv = Dotenv.load();
 
         driver.navigate().to(baseUrl);
     }
@@ -107,12 +121,21 @@ public class DashboardSteps {
 
 
     @When("I enter a valid taxpayer username and password combination")
-    public void i_enter_a_valid_username_and_password() {
+    public void i_enter_a_valid_taxpayer_username_and_password() {
         WebElement usernameField = driver.findElement(By.id("txtUserID"));
-        usernameField.sendKeys("brian.jackson@hotmail.com");
+        usernameField.sendKeys(dotenv.get("TAXPAYER_USERNAME"));
 
         WebElement passwordField = driver.findElement(By.id("txtPassword"));
-        passwordField.sendKeys("pega123!");
+        passwordField.sendKeys(dotenv.get("TAXPAYER_PASSWORD"));
+    }
+
+    @When("I enter a valid tax professional username and password combination")
+    public void i_enter_a_valid_taxpro_username_and_password() {
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        usernameField.sendKeys(dotenv.get("TAXPRO_USERNAME"));
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        passwordField.sendKeys(dotenv.get("TAXPRO_PASSWORD"));
     }
 
     @When("I enter an invalid username and password combination")
@@ -319,16 +342,23 @@ public class DashboardSteps {
         driver.quit();
     }
     
+    @When("I change my ssn")
+    public void i_change_my_ssn() {
+        WebElement ssnField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSSN"));
+        ssnField.clear();
+        ssnField.sendKeys(Utility.randomDigits(9));
+    }
+
     @When("I enter my personal information")
     public void i_enter_my_personal_information() {
-        // WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
-        // field.sendKeys(Utility.randomFirstName());
+        WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
+        field.sendKeys(Utility.randomFirstName());
 
-        // WebElement miField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pMiddleInitial"));
-        // miField.sendKeys("m");
+        WebElement miField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pMiddleInitial"));
+        miField.sendKeys("m");
 
-        // WebElement lastNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
-        // lastNameField.sendKeys(Utility.randomLastName());
+        WebElement lastNameField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pLastName"));
+        lastNameField.sendKeys(Utility.randomLastName());
 
         WebElement ssnField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pSSN"));
         ssnField.clear();
@@ -466,6 +496,12 @@ public class DashboardSteps {
     @Then("I am in the taxpayer portal")
     public void i_am_in_the_taxpayer_portal() {
         assertEquals(driver.getTitle(), "Taxpayer Portal");
+        driver.quit();
+    }
+
+    @Then("I am in the tax professional portal")
+    public void i_am_in_the_tax_professional_portal() {
+        assertEquals(driver.getTitle(), "Tax Professional Portal");
         driver.quit();
     }
 

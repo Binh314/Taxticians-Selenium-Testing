@@ -6,6 +6,11 @@ When I enter a valid taxpayer username and password combination
 And I click login
 Then I am in the taxpayer portal
 
+Scenario: Successful Tax Professional Login
+When I enter a valid tax professional username and password combination
+And I click login
+Then I am in the tax professional portal
+
 Scenario: Invalid Username and Password Combination
 When I enter an invalid username and password combination
 And I click login
