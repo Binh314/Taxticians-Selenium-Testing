@@ -1,5 +1,6 @@
 package com.skillstorm.cucumber;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
@@ -75,6 +76,14 @@ public class DashboardSteps {
         fileTaxButton.click();
     }
 
+    @Before("@Login")
+    public void beforeLogin(){
+        this.driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+        driver.navigate().to(baseUrl);
+    }
+
     @After("@Onboarding")
     public void after() {
         // this.driver.quit();
@@ -95,30 +104,49 @@ public class DashboardSteps {
         registerTaxpayerButton.click();
     }
 
-    @When("I enter a valid email")
-    public void i_enter_a_valid_email() {
-        WebElement emailField = driver.findElement(By.id("dcbbc9a8"));
-        emailField.sendKeys("example@skillstorm.com");
+
+    @When("I enter a valid taxpayer username and password combination")
+    public void i_enter_a_valid_username_and_password() {
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        usernameField.sendKeys("brian.jackson@hotmail.com");
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        passwordField.sendKeys("pega123!");
     }
 
-    @When("I enter an invalid email")
-    public void i_enter_an_invalid_email() {
-        WebElement emailField = driver.findElement(By.id("dcbbc9a8"));
-        emailField.sendKeys("example");
+    @When("I enter an invalid username and password combination")
+    public void i_enter_an_invalid_username_and_password() {
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        usernameField.sendKeys("brian.jackson@hotmail.com");
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        passwordField.sendKeys("Pega123!");
     }
 
-    @When("I enter a valid password")
-    public void i_enter_a_valid_password() {
-        WebElement passwordField = driver.findElement(By.id("6a51482b"));
-        passwordField.sendKeys("passwordpassword");
+    @When("I enter a username")
+    public void i_enter_a_username() {
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        usernameField.sendKeys("brian.jackson@hotmail.com");
     }
 
-    @When("I enter a too short password")
-    public void i_enter_a_too_short_password() {
-        WebElement passwordField = driver.findElement(By.id("6a51482b"));
-        passwordField.sendKeys("password");
+    @When("I enter a password")
+    public void i_enter_a_password() {
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        passwordField.sendKeys("pega123!");
     }
 
+    @Then("the username and password fields are empty")
+    public void the_password_gets_cleared() {
+        assertEquals(driver.getTitle(), "Login Page");
+
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        assertEquals(usernameField.getText().length(), 0);
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        assertEquals(passwordField.getText().length(), 0);
+
+        driver.quit();
+    }
 
     @When("I click submit")
     public void i_click_submit() {
@@ -126,7 +154,25 @@ public class DashboardSteps {
         // WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
         WebElement submitButton = driver.findElement(By.id("Submit"));
         submitButton.click();
-        Utility.sleep(1000);
+        Utility.sleep(500);
+    }
+
+    @When("I click login")
+    public void i_click_login() {
+        Utility.sleep(100);
+        // WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        WebElement loginButton = driver.findElement(By.id("sub"));
+        loginButton.click();
+        Utility.sleep(500);
+    }
+
+    @When("I click advance this case")
+    public void i_click_advance_this_case() {
+        Utility.sleep(100);
+        // WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
+        WebElement submitButton = driver.findElement(By.xpath("//button[text()='Advance this case']"));
+        submitButton.click();
+        Utility.sleep(500);
     }
 
     @When("I click create")
@@ -187,6 +233,13 @@ public class DashboardSteps {
         button.click();
     }
 
+    @When("I click income or sales taxes")
+    public void i_click_income_or_sales_taxes() {
+        Utility.sleep(100);
+        WebElement button = driver.findElement(By.cssSelector("[aria-label='Income or Sales Taxes']"));
+        button.click();
+    }
+
     @When("I click income")
     public void i_click_income() {
         Utility.sleep(100);
@@ -203,15 +256,7 @@ public class DashboardSteps {
 
     @When("I click no")
     public void i_click_no() {
-        Utility.sleep(1000);
-
-        // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
-        Actions actions = new Actions(driver);
-        // Scroll up using the Page Up key
-        actions.sendKeys(Keys.PAGE_UP).perform();
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Utility.sleep(500);
+        Utility.sleep(100);
 
         WebElement button = driver.findElement(By.xpath("//label[text()='No']"));
         button.click();
@@ -219,21 +264,13 @@ public class DashboardSteps {
 
     @When("I click all no")
     public void i_click_all_no() {
-        Utility.sleep(1000);
-
-        // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
-        Actions actions = new Actions(driver);
-        // Scroll up using the Page Up key
-        actions.sendKeys(Keys.PAGE_UP).perform();
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Utility.sleep(500);
+        Utility.sleep(100);
 
         List<WebElement> buttons = driver.findElements(By.xpath("//label[text()='No']"));
         int numNos = buttons.size();
         for (int i = 0; i < numNos; i++) {
             buttons.get(i).click();
-            Utility.sleep(500);
+            Utility.sleep(100);
 
             // keeps elements from going stale
             buttons = driver.findElements(By.xpath("//label[text()='No']"));
@@ -243,7 +280,7 @@ public class DashboardSteps {
 
     @When("I click yes")
     public void i_click_yes() {
-        Utility.sleep(1000);
+        Utility.sleep(100);
 
         // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
         Actions actions = new Actions(driver);
@@ -258,40 +295,15 @@ public class DashboardSteps {
         button.click();
     }
 
-    @Then("I get an error message about the short password")
+    @Then("I get a login error")
     public void i_get_an_error_message_about_the_short_password() {
-        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The password must contain at least 12 characters']")).size() > 0;
+        Utility.sleep(100);
+        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The information you entered was not recognized. ']")).size() > 0;
         assertTrue(errorMessageIsPresent);
         driver.quit();
     }
 
-    @Then("I get an error message about the invalid email")
-    public void i_get_an_error_message_about_the_invalid_email() {
-        try {
-            // Switch to the alert
-            Alert alert = driver.switchTo().alert();
-            alert.accept(); 
-        } catch (NoAlertPresentException e) {
-            throw e;
-        }
-        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='Enter a valid email address']")).size() > 0;
-        assertTrue(errorMessageIsPresent);
-        driver.quit();
-    }
-
-    @Then("I get an error message about a blank value")
-    public void i_get_an_error_message_about_a_blank_value() {
-        try {
-            // Switch to the alert
-            Alert alert = driver.switchTo().alert();
-            alert.accept(); 
-        } catch (NoAlertPresentException e) {
-            throw e;
-        }
-        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='Value cannot be blank']")).size() > 0;
-        assertTrue(errorMessageIsPresent);
-        driver.quit();
-    }
+  
 
     @Then("it is successful")
     public void it_is_successful() {
@@ -431,6 +443,21 @@ public class DashboardSteps {
 
         WebElement box7 = driver.findElement(By.name("$PpyWorkPage$pNew1099R$pDistributionCodes"));
         box7.sendKeys("7");
+    }
+
+    @When("I enter my payment information")
+    public void i_enter_my_payment_information() {
+        WebElement routingNumberField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pBRoutingNumber"));
+        routingNumberField.sendKeys(Utility.randomDigits(9));
+
+        WebElement accountNnumberField = driver.findElement(By.name("$PpyWorkPage$pForm1040$pDAccountNumber"));
+        accountNnumberField.sendKeys(Utility.randomDigits(12));
+    }
+
+    @Then("I am in the taxpayer portal")
+    public void i_am_in_the_taxpayer_portal() {
+        assertEquals(driver.getTitle(), "Tax Payer Portal");
+        driver.quit();
     }
 
 }

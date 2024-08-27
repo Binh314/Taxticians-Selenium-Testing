@@ -39,3 +39,28 @@ And I click all no
 And I click continue
 And I click all no
 And I click finish
+
+# Deductions Stage
+And I click no
+And I click continue
+And I click no
+And I click continue
+And I click no
+And I click continue
+And I click no
+# And I click income or sales taxes
+# And I click all no
+And I click continue
+And I click all no
+And I click continue
+And I click advance this case
+
+# Tax and Credits Stage
+# TODO: ADD DEPENDENT CURRENT NOT WORKING
+And I click continue
+And I click no
+And I click finish
+
+# Resolution Stage
+And I enter my payment information
+And I click submit
