@@ -37,6 +37,7 @@ public class DashboardSteps {
     private Dotenv dotenv;
 
     private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
+    private static final int pegaCooldown = 1000;
 
 
 
@@ -264,7 +265,7 @@ public class DashboardSteps {
 
     @When("I click no")
     public void i_click_no() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
 
         WebElement button = driver.findElement(By.xpath("//label[text()='No']"));
         button.click();
@@ -272,7 +273,7 @@ public class DashboardSteps {
 
     @When("I click all no")
     public void i_click_all_no() {
-        Utility.sleep(500);
+        Utility.sleep(pegaCooldown);
 
         List<WebElement> buttons = driver.findElements(By.xpath("//label[text()='No']"));
         int numNos = buttons.size();
@@ -288,7 +289,7 @@ public class DashboardSteps {
 
     @When("I click yes")
     public void i_click_yes() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
 
         // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
         Actions actions = new Actions(driver);
@@ -464,7 +465,7 @@ public class DashboardSteps {
 
     @Then("I am in the taxpayer portal")
     public void i_am_in_the_taxpayer_portal() {
-        assertEquals(driver.getTitle(), "Tax Payer Portal");
+        assertEquals(driver.getTitle(), "Taxpayer Portal");
         driver.quit();
     }
 

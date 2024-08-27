@@ -71,9 +71,15 @@ And I click continue
 And I click advance this case
 
 # Tax and Credits Stage
+## Educaton Tax Credits
 # TODO: ADD DEPENDENT CURRENT NOT WORKING
 And I click continue
+## Student?
 And I click no
+And I click continue
+## Calculated Lines
+And I click continue
+## Review
 And I click finish
 
 # Resolution Stage
