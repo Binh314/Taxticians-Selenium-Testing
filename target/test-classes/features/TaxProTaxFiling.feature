@@ -73,7 +73,7 @@ And I click continue
 And I click no
 And I click continue
 ## Review
-And I click advance this case
+And I click finish
 
 # Tax and Credits Stage
 ## Educaton Tax Credits

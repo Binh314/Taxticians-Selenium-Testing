@@ -37,7 +37,7 @@ public class DashboardSteps {
     private Dotenv dotenv;
 
     private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
-    private static final int pegaCooldown = 1000;
+    private static final int pegaCooldown = 200;
 
 
 
@@ -66,6 +66,7 @@ public class DashboardSteps {
         dotenv = Dotenv.load();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().window().maximize();
         Dotenv dotenv = Dotenv.load();
 
         driver.navigate().to(baseUrl);
@@ -80,7 +81,7 @@ public class DashboardSteps {
         WebElement loginBtn = driver.findElement(By.id("sub"));
         loginBtn.click();
 
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
 
         WebElement createButton = driver.findElement(By.cssSelector("[data-menu-id='DataPortalpyCreateCaseMenu153cef6883']"));
         createButton.click();
@@ -98,6 +99,7 @@ public class DashboardSteps {
         dotenv = Dotenv.load();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().window().maximize();
         Dotenv dotenv = Dotenv.load();
 
         driver.navigate().to(baseUrl);
@@ -112,7 +114,7 @@ public class DashboardSteps {
         WebElement loginBtn = driver.findElement(By.id("sub"));
         loginBtn.click();
 
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
 
         WebElement createButton = driver.findElement(By.cssSelector("[data-menu-id='DataPortalpyCreateCaseMenu153cef6883']"));
         createButton.click();
@@ -125,15 +127,11 @@ public class DashboardSteps {
     @Before("@Login")
     public void beforeLogin(){
         this.driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         dotenv = Dotenv.load();
 
         driver.navigate().to(baseUrl);
-    }
-
-    @After("@Onboarding")
-    public void after() {
-        // this.driver.quit();
     }
 
     
@@ -206,7 +204,7 @@ public class DashboardSteps {
 
     @When("I click submit")
     public void i_click_submit() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
         // WebElement submitButton = driver.findElement(By.id("Submit"));
         submitButton.click();
@@ -215,7 +213,7 @@ public class DashboardSteps {
 
     @When("I click submit on overlay")
     public void i_click_submit_on_overlay() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement submitButton = driver.findElement(By.id("Submit"));
         submitButton.click();
         Utility.sleep(750);
@@ -223,7 +221,7 @@ public class DashboardSteps {
 
     @When("I click login")
     public void i_click_login() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         // WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
         WebElement loginButton = driver.findElement(By.id("sub"));
         loginButton.click();
@@ -232,7 +230,7 @@ public class DashboardSteps {
 
     @When("I click advance this case")
     public void i_click_advance_this_case() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         // WebElement submitButton = driver.findElement(By.xpath("//button[text()='Submit']"));
         WebElement submitButton = driver.findElement(By.xpath("//button[text()='Advance this case']"));
         submitButton.click();
@@ -241,7 +239,7 @@ public class DashboardSteps {
 
     @When("I click create")
     public void i_click_create() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement createButton = driver.findElement(By.xpath("//button[text()='Create']"));
         createButton.click();
         Utility.sleep(500);
@@ -249,21 +247,21 @@ public class DashboardSteps {
 
     @When("I click continue")
     public void i_click_continue() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.xpath("//button[text()='Continue']"));
         button.click();
     }
 
     @When("I click finish")
     public void i_click_finish() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.xpath("//button[text()='Finish']"));
         button.click();
     }
 
     @When("I click go")
     public void i_click_go() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.xpath("//button[text()='Go']"));
         button.click();
         Utility.sleep(1000);
@@ -271,49 +269,49 @@ public class DashboardSteps {
 
     @When("I click approve")
     public void i_click_approve() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.xpath("//button[text()='Approve']"));
         button.click();
     }
 
     @When("I click add dependents")
     public void i_click_add_dependents() {
-        Utility.sleep(100);
-        WebElement button = driver.findElement(By.xpath("//button[text()='Add dependents']"));
+        Utility.sleep(pegaCooldown);
+        WebElement button = driver.findElement(By.xpath("//button[text()='Add Dependents']"));
         button.click();
     }
 
     @When("I click add w2")
     public void i_click_add_w2() {
-        Utility.sleep(100);
-        WebElement button = driver.findElement(By.xpath("//button[text()='Add W2']"));
+        Utility.sleep(pegaCooldown);
+        WebElement button = driver.findElement(By.xpath("//button[text()='Add a W-2']"));
         button.click();
     }
 
     @When("I click social security")
     public void i_click_social_security() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.cssSelector("[aria-label='Social Security']"));
         button.click();
     }
 
     @When("I click income or sales taxes")
     public void i_click_income_or_sales_taxes() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.cssSelector("[aria-label='Income or Sales Taxes']"));
         button.click();
     }
 
     @When("I click income")
     public void i_click_income() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.cssSelector("[aria-label='Income']"));
         button.click();
     }
 
     @When("I click medicare")
     public void i_click_medicare() {
-        Utility.sleep(100);
+        Utility.sleep(pegaCooldown);
         WebElement button = driver.findElement(By.cssSelector("[aria-label='Medicare']"));
         button.click();
     }
@@ -345,14 +343,6 @@ public class DashboardSteps {
     @When("I click yes")
     public void i_click_yes() {
         Utility.sleep(pegaCooldown);
-
-        // TODO: REMOVE SCROLL UP ONCE FIELDS ARE INVISIBLE
-        Actions actions = new Actions(driver);
-        // Scroll up using the Page Up key
-        actions.sendKeys(Keys.PAGE_UP).perform();
-        actions.sendKeys(Keys.PAGE_UP).perform();
-
-        Utility.sleep(500);
 
         // WebElement button = driver.findElement(By.cssSelector("[value='No']"));
         WebElement button = driver.findElement(By.xpath("//label[text()='Yes']"));
@@ -414,9 +404,12 @@ public class DashboardSteps {
 
     @When("I choose filing jointly")
     public void i_choose_filing_jointly() {
-        WebElement dropdownElement = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFilingStatus"));
-        Select dropdown = new Select(dropdownElement);
-        dropdown.selectByVisibleText("Married Filing Jointly (even if only one had income)");
+        // WebElement dropdownElement = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFilingStatus"));
+        // Select dropdown = new Select(dropdownElement);
+        // dropdown.selectByVisibleText("Married Filing Jointly (even if only one had income)");
+
+        WebElement button = driver.findElement(By.xpath("//label[text()='Married Filing Jointly (even if only one had income)']"));
+        button.click();
     }
 
     @When("I enter my spouse's information") 
@@ -456,41 +449,41 @@ public class DashboardSteps {
 
     @When("I enter my employer information")
     public void i_enter_my_employer_information() {
-        WebElement einField = driver.findElement(By.name("$PTempW2$pEmployerEIN"));
+        WebElement einField = driver.findElement(By.name("$PpyWorkPage$pNewW2$pEmployerEIN"));
         einField.sendKeys(Utility.randomDigits(9));
 
-        WebElement employerNameField = driver.findElement(By.name("$PTempW2$pEmployerName"));
+        WebElement employerNameField = driver.findElement(By.name("$PpyWorkPage$pNewW2$pEmployerName"));
         employerNameField.sendKeys("SkillStorm");
 
-        WebElement employerAddress = driver.findElement(By.name("$PTempW2$pEmployerAddress"));
+        WebElement employerAddress = driver.findElement(By.name("$PpyWorkPage$pNewW2$pEmployerAddress"));
         employerAddress.sendKeys("10151 Deerwood Park Blvd Building 100, Suite 425, Jacksonville, FL 32256");
 
     }
 
     @When("I enter my social security information")
     public void i_enter_my_social_security_information() {
-        WebElement box4 = driver.findElement(By.name("$PTempW2$pSocialSecurityTax"));
+        WebElement box4 = driver.findElement(By.name("$PpyWorkPage$pNewW2$pSocialSecurityTax"));
         box4.sendKeys("3100");
 
-        WebElement box3 = driver.findElement(By.name("$PTempW2$pSocialSecurityWages"));
+        WebElement box3 = driver.findElement(By.name("$PpyWorkPage$pNewW2$pSocialSecurityWages"));
         box3.sendKeys("50,000");
     }
 
     @When("I enter my income information")
     public void i_enter_my_income_information() {
-        WebElement box2 = driver.findElement(By.name("$PTempW2$pIncomeTaxWithheld"));
+        WebElement box2 = driver.findElement(By.name("$PpyWorkPage$pNewW2$pIncomeTaxWithheld"));
         box2.sendKeys("5,000");
 
-        WebElement box1 = driver.findElement(By.name("$PTempW2$pWagesTipsOtherCompensation"));
+        WebElement box1 = driver.findElement(By.name("$PpyWorkPage$pNewW2$pWagesTipsOtherCompensation"));
         box1.sendKeys("50000");
     }
 
     @When("I enter my medicare information")
     public void i_enter_my_medicare_information() {
-        WebElement box5 = driver.findElement(By.name("$PTempW2$pMedicareWages"));
+        WebElement box5 = driver.findElement(By.name("$PpyWorkPage$pNewW2$pMedicareWages"));
         box5.sendKeys("50,000");
 
-        WebElement box6 = driver.findElement(By.name("$PTempW2$pMedicareTax"));
+        WebElement box6 = driver.findElement(By.name("$PpyWorkPage$pNewW2$pMedicareTax"));
         box6.sendKeys("725");
     }
 
