@@ -189,19 +189,6 @@ public class DashboardSteps {
         passwordField.sendKeys("pega123!");
     }
 
-    @Then("the username and password fields are empty")
-    public void the_password_gets_cleared() {
-        assertEquals(driver.getTitle(), "Login Page");
-
-        WebElement usernameField = driver.findElement(By.id("txtUserID"));
-        assertEquals(usernameField.getText().length(), 0);
-
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
-        assertEquals(passwordField.getText().length(), 0);
-
-        driver.quit();
-    }
-
     @When("I click submit")
     public void i_click_submit() {
         Utility.sleep(pegaCooldown);
@@ -332,7 +319,7 @@ public class DashboardSteps {
         int numNos = buttons.size();
         for (int i = 0; i < numNos; i++) {
             buttons.get(i).click();
-            Utility.sleep(200);
+            Utility.sleep(150);
 
             // keeps elements from going stale
             buttons = driver.findElements(By.xpath("//label[text()='No']"));
@@ -349,20 +336,7 @@ public class DashboardSteps {
         button.click();
     }
 
-    @Then("I get a login error")
-    public void i_get_an_error_message_about_the_short_password() {
-        Utility.sleep(100);
-        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The information you entered was not recognized. ']")).size() > 0;
-        assertTrue(errorMessageIsPresent);
-        driver.quit();
-    }
 
-  
-
-    @Then("it is successful")
-    public void it_is_successful() {
-        driver.quit();
-    }
     
     @When("I change my ssn")
     public void i_change_my_ssn() {
@@ -371,8 +345,8 @@ public class DashboardSteps {
         ssnField.sendKeys(Utility.randomDigits(9));
     }
 
-    @When("I enter my personal information")
-    public void i_enter_my_personal_information() {
+    @When("I enter my client's personal information")
+    public void i_enter_my_clients_personal_information() {
         WebElement field = driver.findElement(By.name("$PpyWorkPage$pForm1040$pFirstName"));
         field.sendKeys(Utility.randomFirstName());
 
@@ -518,6 +492,34 @@ public class DashboardSteps {
         accountNnumberField.sendKeys(Utility.randomDigits(12));
     }
 
+
+    @Then("the username and password fields are empty")
+    public void the_password_gets_cleared() {
+        assertEquals(driver.getTitle(), "Login Page");
+
+        WebElement usernameField = driver.findElement(By.id("txtUserID"));
+        assertEquals(usernameField.getText().length(), 0);
+
+        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        assertEquals(passwordField.getText().length(), 0);
+
+        driver.quit();
+    }
+
+
+    @Then("I get a login error")
+    public void i_get_an_error_message_about_the_short_password() {
+        Utility.sleep(100);
+        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='The information you entered was not recognized. ']")).size() > 0;
+        assertTrue(errorMessageIsPresent);
+        driver.quit();
+    }
+
+    @Then("it is successful")
+    public void it_is_successful() {
+        driver.quit();
+    }
+
     @Then("I am in the taxpayer portal")
     public void i_am_in_the_taxpayer_portal() {
         assertEquals(driver.getTitle(), "Taxpayer Portal");
@@ -527,6 +529,14 @@ public class DashboardSteps {
     @Then("I am in the tax professional portal")
     public void i_am_in_the_tax_professional_portal() {
         assertEquals(driver.getTitle(), "Tax Professional Portal");
+        driver.quit();
+    }
+
+    @Then("I see the password requirements error")
+    public void i_see_the_password_requirements_error() {
+        Utility.sleep(100);
+        boolean errorMessageIsPresent = driver.findElements(By.xpath("//*[text()='Passwords must contain at least 8 characters, a lowercase letter, an uppercase letter, and a number']")).size() > 0;
+        assertTrue(errorMessageIsPresent);
         driver.quit();
     }
 

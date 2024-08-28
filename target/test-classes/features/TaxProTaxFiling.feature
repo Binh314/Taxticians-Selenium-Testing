@@ -4,7 +4,7 @@ Feature: File Individual Taxes by Tax Professional
 Scenario: Successful Tax Filing
 
 # Filer Information Stage
-When I change my ssn
+When I enter my client's personal information
 And I click continue
 And I choose filing jointly
 And I enter my spouse's information
@@ -87,3 +87,4 @@ And I click finish
 # Resolution Stage
 And I enter my payment information
 And I click submit
+Then it is successful

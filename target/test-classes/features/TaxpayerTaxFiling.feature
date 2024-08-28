@@ -87,3 +87,4 @@ And I click finish
 # Resolution Stage
 And I enter my payment information
 And I click submit
+Then it is successful

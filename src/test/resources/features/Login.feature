@@ -21,7 +21,6 @@ When I enter a password
 And I click login
 Then the username and password fields are empty
 
-
 Scenario: Missing Password
 When I enter a username
 And I click login
