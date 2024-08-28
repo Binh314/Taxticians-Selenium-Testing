@@ -78,7 +78,6 @@ And I click finish
 # Tax and Credits Stage
 ## Educaton Tax Credits
 # TODO: ADD DEPENDENT CURRENT NOT WORKING
-And I click continue
 ## Student?
 And I click no
 And I click continue

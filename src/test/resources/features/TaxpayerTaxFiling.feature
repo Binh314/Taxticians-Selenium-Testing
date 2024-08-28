@@ -18,10 +18,10 @@ And I click create
 ## W2
 And I click add w2
 And I enter my employer information
-And I click social security
-And I enter my social security information
 And I click income
 And I enter my income information
+And I click social security
+And I enter my social security information
 And I click medicare
 And I enter my medicare information
 And I click submit on overlay
@@ -78,7 +78,6 @@ And I click finish
 # Tax and Credits Stage
 ## Educaton Tax Credits
 # TODO: ADD DEPENDENT CURRENT NOT WORKING
-And I click continue
 ## Student?
 And I click no
 And I click continue

@@ -37,7 +37,7 @@ public class DashboardSteps {
     private Dotenv dotenv;
 
     private static final String baseUrl = "http://10.1.0.5:9080/prweb/app/taxticians/";
-    private static final int pegaCooldown = 200;
+    private static final int pegaCooldown = 300;
 
 
 
@@ -332,7 +332,7 @@ public class DashboardSteps {
         int numNos = buttons.size();
         for (int i = 0; i < numNos; i++) {
             buttons.get(i).click();
-            Utility.sleep(100);
+            Utility.sleep(200);
 
             // keeps elements from going stale
             buttons = driver.findElements(By.xpath("//label[text()='No']"));
